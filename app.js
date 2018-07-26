@@ -1,46 +1,54 @@
 new Vue({
     el: '#vue-app',
     data: {
-        nomorhp: '',
-        message: '',
-        whatsapp: '',
-        angka: 0,
-        ini1: [],
-        ini2: [],
-        arr: []
+        barang: '',
+        qty: '',
+        index: '',
+        hasilnya: true,
+        button: 'Show Cart',
+        cart: [],
     },
     methods: {
-        //    tambah: function() {
-        //     this.whatsapp = '<a href=https://wa.me/' + this.nomorhp + '/?text=' +this.message +'> Ini Adalah WA</a>'
-        //    },
-        //    pesan: function(){
-        //     var mess = this.message.replace(' ', '%20')
-        //     this.whatsapp = '<a href=https://wa.me/' + this.nomorhp + '/?text=' + mess +'> Ini Adalah WA</a>'
-        //    },
-        calc: function () {
-            x = this.angka;
-            for (i = 0; i < x; i++) {
-                var kedua = +this.angka - 1;
-                for (j = 0; j < 2; j++) {
-                    this.ini1.push(kedua);
+        tambah: function () {
+            const data = {
+                barang: this.barang,
+                qty: this.qty
+            }
+            var count = this.cart.length;
+            if (count != 0 && hasilcari !== true) {
+                for (var i = 0; i < count; i++) {
+                    if (this.cart[i].barang === this.barang) {
+                       
+                        var hasilcari = false;
+                        this.cart[i].qty = +this.qty + +this.cart[i].qty
+                        break;
+                    } else {
+                        var hasilcari = true;
+                    }
                 }
-
-                var tambahan = +this.angka + 1;
-                for (j = 0; j < +this.angka; j++) {
-                    this.ini2.push(tambahan);
-                }
-                
-                console.log(this.ini2)
-                
-                const data ={
-                    hasil: this.ini1+this.ini2
-                }
-                this.arr.push(data)
-                console.log(data)
-                this.ini1 = [];
-                this.ini2 = [];
-                +this.angka --;
+            }
+            if (hasilcari === true || count === 0) {
+                this.cart.push(data);
             }
         },
+        kurang: function () {
+            const data = {
+                barang: this.barang,
+                qty: this.qty
+            }
+            var count = this.cart.length;
+            if (count != 0) {
+                for (var i = 0; i < count; i++) {
+                    if (this.cart[i].barang === this.barang) {
+                        var hasilcari = false;
+                        var totalqty = +this.cart[i].qty - +this.qty
+                        this.cart[i].qty = totalqty
+                        if(totalqty<1){
+                            this.cart.splice([i], 1)
+                        }
+                    } 
+                }
+            }
+        }        
     }
-});
+})
