@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vue man</title>
+    <title>Vue Coy</title>
     <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 </head>
+
 <body>
     <div id="vue-app">
-        <input type="text" v-model="angka" @keyup.enter="calc">
-        <ul>
-            <li v-for="data in arr">
-                {{data.hasil}}
-            </li>
-        </ul>
-    </div> 
-<script src="app.js"></script>   
+        <input type="date" v-model="date">
+        <input type="number" v-model="max">
+        <input type="number" v-model="min">
+        <button @click="ambil">Submit</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Max
+                    </th>
+                    <th>
+                        Min
+                    </th>
+                    <th>
+                        Variance
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="temp in tampung" @click="detail(temp)" ref>
+                    <td>{{temp.date}}</td>
+                    <td>{{temp.max}}</td>
+                    <td>{{temp.min}}</td>
+                    <td>{{temp.variance}}</td>
+                </tr>
+                <tr>
+                    <td>Average</td>
+                    <td>{{meanMax}}</td>
+                    <td>{{meanMin}}</td>
+                    <td>{{meanVar}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="app.js"></script>
+    
 </body>
+
 </html>

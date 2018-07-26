@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+        <div id="vue-app">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Date
+                        </th>
+                        <th id="date">
+                            
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Max</td>
+                        <td id="max"></td>
+                    </tr>
+                    <tr>
+                            <td>Min</td>
+                            <td id="min"></td>
+                    </tr>
+                    <tr>
+                            <td>Variance</td>
+                            <td id="variance"></td>
+                        </tr>
+                </tbody>
+            </table>
+            </div>
+
+        <script src="app.js"></script>
+        <script>
+            document.getElementById("max").innerHTML = localStorage.getItem("simpan");
+            document.getElementById("date").innerHTML = localStorage.getItem("simpan1");
+            document.getElementById("min").innerHTML = localStorage.getItem("simpan2");
+            document.getElementById("variance").innerHTML = localStorage.getItem("simpan3");
+            console.log(localStorage)
+        </script>
+</body>
+</html>
